@@ -1,0 +1,16 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="api.css">
+<script src="jquery-3.1.0.min.js"></script>
+<title>Perfect API Reference</title>
+</head>
+<body>{{#projects}}<div class="project">
+<div class="expando projectName">{{name}}</div>
+<div class="contents">{{#files}}{{>api_html_sub}}{{/files}}</div>
+</div>{{/projects}}</body>
+<script>
+$(document).ready(function() {
+	$(".expando").click(function() { $(this).siblings(".contents").slideToggle() })
+})
+</script>
+</html>

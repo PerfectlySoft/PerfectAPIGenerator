@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DEST=api.html
+
+swift build
+.build/debug/perfectapigen --root /Users/kjessup/development/PerfectNeu --dest ${DEST} --template api_html.mustache
+#cat ${DEST} | python -m json.tool > api.json
+bbedit api.html
