@@ -1,0 +1,33 @@
+
+/* ==========================================================================
+   11. Social Media Nav Styles
+   ========================================================================== */
+
+.socialnav,
+.socialnav li
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.socialnav li
+{
+    display: inline;
+    font-size: 1em;
+    margin-right: 0.4em;
+}
+.socialnav li a span
+{
+	font-size: 1rem;
+}
+
+.socialnav li:last-child
+{
+    margin-right: 0;
+}
+
+.socialnav li a
+{
+    text-decoration: none;
+}

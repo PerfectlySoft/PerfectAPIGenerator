@@ -1,0 +1,42 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 960 655" style="enable-background:new 0 0 960 655;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#D1D3D4;}
+	.st1{fill:#58595B;}
+	.st2{fill:#414042;}
+	.st3{fill:#808285;}
+	.st4{fill:#6D6E71;}
+	.st5{fill:#ED6E34;}
+	.st6{fill:#E6E7E8;}
+</style>
+<g>
+	<rect x="256.9" y="564.1" class="st0" width="75.7" height="9.7"/>
+	<path class="st1" d="M339.6,407.8l-8.2-14.5c-0.3-1.7-1.8-3-3.6-3h-66.7c-1.5,0-2.8,0.9-3.3,2.2h0l-8.9,15.5c0,0-0.9,1.7-0.9,2.8
+		v150c0,2.3,1.8,4.1,4.1,4.1h84.7c2.3,0,4.1-1.8,4.1-4.1v-150C340.9,409.6,340.4,408.6,339.6,407.8z"/>
+	<path class="st2" d="M339.6,407.6l-8.2-14.5c-0.3-1.7-1.8-3-3.6-3h-33.4v174.6h42.4c2.3,0,4.1-1.8,4.1-4.1v-150
+		C340.9,409.4,340.4,408.4,339.6,407.6z"/>
+	<g>
+		<rect x="270.8" y="427.8" class="st3" width="23.6" height="7.6"/>
+		<rect x="270.8" y="445.4" class="st3" width="23.6" height="7.6"/>
+		<rect x="270.8" y="463" class="st3" width="23.6" height="7.6"/>
+		<rect x="270.8" y="480.6" class="st3" width="23.6" height="7.6"/>
+	</g>
+	<path class="st4" d="M248.9,408.1l8.9-15.8h0c0.6-1.3,1.9-2.2,3.4-2.2H328c1.8,0,3.3,1.3,3.6,3l8,14.9L248.9,408.1z"/>
+	<rect x="248" y="426.2" class="st5" width="28.9" height="10.6"/>
+	<rect x="248" y="443.8" class="st5" width="28.9" height="10.6"/>
+	<rect x="248" y="461.4" class="st5" width="28.9" height="10.6"/>
+	<rect x="248" y="479" class="st5" width="28.9" height="10.6"/>
+	<g>
+		<path class="st3" d="M248.2,548.2v14.6c0,2.3,1.8,4.1,4.1,4.1H337c2.3,0,4.1-1.8,4.1-4.1v-14.6H248.2z"/>
+		<path class="st1" d="M294.6,548.2v18.5H337c2.3,0,4.1-1.8,4.1-4.1v-14.4H294.6z"/>
+	</g>
+	<g>
+		<rect x="294.4" y="427.8" class="st1" width="46.6" height="7.6"/>
+		<rect x="294.4" y="445.4" class="st1" width="46.6" height="7.6"/>
+		<rect x="294.4" y="463" class="st1" width="46.6" height="7.6"/>
+		<rect x="294.4" y="480.6" class="st1" width="46.6" height="7.6"/>
+	</g>
+	<path class="st6" d="M338.7,575.9h-88.5c-1.4,0-2.5-1.1-2.5-2.5l0,0c0-1.4,1.1-2.5,2.5-2.5h88.5c1.4,0,2.5,1.1,2.5,2.5l0,0
+		C341.1,574.8,340,575.9,338.7,575.9z"/>
+</g>
+</svg>

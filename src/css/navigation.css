@@ -1,0 +1,332 @@
+/* ==========================================================================
+   10. Navigation Styles
+   ========================================================================== */
+   
+   
+/* self clearing nav */
+
+nav ul:after,
+nav dl:after,
+menu ul:after,
+menu dl:after
+{
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+nav ul,
+.nav ul,
+ul.nav
+{
+    list-style: none outside;
+}
+
+.horizontal
+{
+    margin: 0;
+}
+
+.horizontal>li,
+.vertical>li,
+.vertical>li>ul>li,
+.vertical>li>ul>li>ul>li,
+.filter_nav>dt,
+.filter_nav>dd
+{
+    display: block;
+    float: left;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.vertical>li,
+.vertical>li>ul>li,
+.vertical>li>ul>li>ul>li
+{
+	float: none;
+	position: relative;
+}
+
+.horizontal>li>a,
+.vertical>li>a,
+.filter_nav>dd>a
+{
+    display: inline-block;
+    color: #fff;
+    float: none;
+    padding: 0.5em 0.865em;
+    font-size: 1em;
+    text-decoration: none;
+}
+.vertical>li>a
+{
+	display: block;
+}
+
+/*
+.horizontal>li>a:hover,
+.horizontal>li>a:focus
+{
+	color: #d1d2d3;
+}
+*/
+
+.horizontal > li > ul,
+.horizontal > li > ul > li,
+.horizontal > li > ul > li > ul,
+.horizontal > li > ul > li > ul > li
+{
+    margin: 0 !important;
+    font-size: 1em;
+    list-style: none;
+}
+
+.horizontal > li > ul > li > a,
+.vertical > li > ul > li > a,
+.horizontal > li > ul > li > ul > li > a,
+.vertical > li > ul > li > ul > li > a
+{
+    display: block;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: .625em 3em .625em 1.125em;
+}
+.horizontal > li > ul > li.last > a
+{
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	
+	background-clip: padding-box;
+}
+
+.horizontal > li > ul > li > a:hover,
+.vertical > li > ul > li > a:hover,
+.horizontal > li > ul > li > ul > li > a:hover,
+.vertical > li > ul > li > ul > li > a:hover
+{
+    color: #f26c37;
+}
+
+.horizontal > li > ul,
+.vertical > li > ul
+{
+    position: absolute;
+    z-index: 5000;
+    width: auto;
+    margin-left: 0;
+    margin-top: 0;
+/*  border: 1px solid #cfcfcf; 
+    box-shadow: 0 1px 9px rgba(0, 0, 0, 0.25); */
+    transition: all 0.3s ease-out;
+    display: none;
+}
+.horizontal > li
+{
+	position: relative;
+}
+.horizontal > li:nth-child(4) > ul
+{
+	left: auto;
+	right: -100px;
+}
+.horizontal > li:nth-child(5) > ul,
+.horizontal > li:nth-child(6) > ul,
+.horizontal > li:nth-child(7) > ul
+{
+	left: auto;
+	right: 0;
+}
+.horizontal > li > ul
+{
+	min-width: 250px;
+}
+.vertical > li > ul
+{
+	top: 0;
+	left: 100%;
+    display: block;
+}
+
+.horizontal > li:hover > ul,
+.vertical > li:hover > ul,
+.horizontal > li.display > ul
+{
+    display: block;
+}
+
+/*
+.horizontal > li:hover > ul:before,
+.vertical > li:hover > ul:before,
+.horizontal > li > ul > li:hover > ul:before,
+.vertical > li > ul > li:hover > ul:before
+{
+    border: solid;
+    border-color: #cfcfcf transparent;
+    border-width: 0 6px 6px 6px;
+    top: -6px;
+    content: "";
+    display: block;
+    left: 12%;
+    position: absolute;
+    z-index: 301;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+}
+
+.vertical > li:hover > ul:before,
+.horizontal > li > ul > li:hover > ul:before,
+.vertical > li > ul > li:hover > ul:before
+{
+    top: 1.125em;
+    left: -6px;
+    border-color: transparent #cfcfcf;
+    border-width: 6px 6px 6px 0;
+}
+*/
+
+.horizontal > li > ul > li
+{
+    /* This is the important rule for positioning the nav
+    /* you need to give the third level a place to start */
+    position: relative;
+}
+
+.horizontal > li > ul > li > ul,
+.vertical > li > ul > li > ul,
+.vertical > li > ul
+{
+    position: absolute;
+    top: 0%;
+    z-index: 5005;
+    margin: 0;
+    width: inherit;
+/*  border: 1px solid #cfcfcf; */
+/*     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25); */
+    transition: all 0.3s ease-out;
+    display: none;
+}
+
+.horizontal > li > ul > li > ul,
+.vertical > li > ul > li > ul
+{
+	list-style: none;
+    left: 100%;
+}
+
+
+.horizontal > li > ul > li:hover > ul,
+.vertical > li > ul > li:hover > ul,
+.horizontal > li > ul > li.display > ul
+{
+    display: block;
+    left: 100%;
+}
+
+.filter_nav
+{
+    margin-top: 0.5em;
+}
+
+.filter_nav>dt
+{
+    border: 1px solid #4d4d4d;
+    padding: 0.5em 0.865em;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.filter_nav>dd
+{
+    margin-left: -3px;
+}
+
+.filter_nav>dd>a
+{
+    border-radius: 0;
+    color: #000;
+    text-shadow: 0 1px rgba(255, 255, 255, .75);
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.filter_nav>dd:last-child>a
+{
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+
+.breadcrumb
+{
+    color: #ccc;
+    margin: 0;
+    font-size: 0.865em;
+}
+
+.breadcrumb li
+{
+    display: inline-block;
+}
+
+.breadcrumb a,
+.breadcrumb a:visited
+{
+    margin: 0 .425em;
+    text-decoration: none;
+    color: #999;
+    white-space: nowrap;
+    float: left;
+}
+
+.breadcrumb li:first-child
+{
+    margin-left: 0;
+}
+
+.breadcrumb a:hover,
+.breadcrumb a:focus
+{
+    color: #333;
+}
+
+.breadcrumb a:active,
+.breadcrumb .active a
+{
+    color: #333;
+}
+
+.breadcrumb li:after
+{
+    display: inline-block;
+    content: '>';
+}
+
+.breadcrumb li:last-child:after
+{
+    content: '';
+    content: none;
+}
+
+
+@media only screen and (max-width: 800px)
+{
+	.horizontal>li
+	{
+		float: none;
+	}
+	
+	.horizontal > li > ul,
+	.vertical > li > ul,
+	.horizontal > li > ul > li > ul,
+	.vertical > li > ul > li > ul,
+	.vertical > li > ul
+	{
+		position: relative;
+	}
+}

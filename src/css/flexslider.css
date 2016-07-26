@@ -1,0 +1,322 @@
+/*
+ * jQuery FlexSlider v2.6.0
+ * http://www.woothemes.com/flexslider/
+ *
+ * Copyright 2012 WooThemes
+ * Free to use under the GPLv2 and later license.
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributing author: Tyler Smith (@mbmufffin)
+ *
+ */
+
+/* ====================================================================================================================
+ * RESETS
+ * ====================================================================================================================*/
+.flex-container a:hover,
+.flex-slider a:hover
+{
+	outline: none;
+}
+.slides,
+.slides > li,
+.flex-control-nav,
+.flex-direction-nav
+{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.flex-pauseplay span
+{
+	text-transform: capitalize;
+}
+/* ====================================================================================================================
+ * BASE STYLES
+ * ====================================================================================================================*/
+.flexslider
+{
+	margin: 0;
+	padding: 0;
+}
+.flexslider .slides > li
+{
+	display: none;
+	-webkit-backface-visibility: hidden;
+}
+.flexslider .slides img
+{
+	width: 100%;
+	display: block;
+}
+.flexslider .slides:after
+{
+	content: "\0020";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+html[xmlns] .flexslider .slides
+{
+	display: block;
+}
+* html .flexslider .slides
+{
+	height: 1%;
+}
+.no-js .flexslider .slides > li:first-child
+{
+	display: block;
+}
+
+/* ====================================================================================================================
+ * DEFAULT THEME
+ * ====================================================================================================================*/
+ 
+.flexslider
+{
+	margin: 0 0;
+	background: transparent;
+	position: relative;
+	zoom: 1;
+/*
+	border-radius: 4px;
+	box-shadow: '' 0 1px 4px rgba(0, 0, 0, 0.2);
+*/
+}
+.flexslider .slides
+{
+	zoom: 1;
+}
+.flexslider .slides img
+{
+	height: auto;
+	-moz-user-select: none;
+}
+.flex-viewport
+{
+	max-height: 2000px;
+	transition: all 1s ease;
+}
+.loading .flex-viewport
+{
+	max-height: 300px;
+}
+.carousel li
+{
+	margin-right: 5px;
+}
+.flex-direction-nav
+{
+	*height: 0;
+	line-height: 1;
+	margin-top: -1em;
+}
+
+.flex-direction-nav li.flex-nav-prev,
+.flex-direction-nav li.flex-nav-next
+{
+	text-decoration: none;
+	display: table-cell;
+	vertical-align: middle;
+	width: 30px;
+	height: 40px;
+	margin: 0 0;
+	z-index: 10;
+	overflow: hidden;
+	cursor: pointer;
+	color: #969696;
+/* 	background-color: rgba(60,72,79, .45); */
+	transition: all 0.3s ease-in-out;
+}
+
+.flex-direction-nav li.flex-nav-next
+{
+	right: 0;
+}
+.flex-direction-nav a
+{
+	text-decoration: none;
+	display: table-cell;
+	vertical-align: middle;
+	width: 30px;
+	height: 40px;
+	margin: 0 0;
+	position: absolute;
+	bottom: 10px;
+	z-index: 10;
+	overflow: hidden;
+	opacity: 0.7;
+	cursor: pointer;
+	color: #f3f3f3;
+	background-color: transparent;
+/* 	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3); */
+	transition: all 0.3s ease-in-out;
+}
+.flex-direction-nav a:before
+{
+	font-family: "entypo";
+	font-size: 40px;
+	display: inline-block;
+	content: '\e6cd';
+	color: #f3f3f3;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+.flex-direction-nav a.flex-next:before
+{
+	content: '\e6d0';
+}
+.flex-direction-nav .flex-prev
+{
+	left: -15px;
+	content: '';
+}
+.flex-direction-nav .flex-next
+{
+	right: -15px;
+	content: '';
+	text-align: right;
+}
+.flexslider:hover .flex-direction-nav .flex-prev
+{
+	opacity: 0.7;
+}
+.flexslider:hover .flex-direction-nav .flex-prev:hover
+{
+	opacity: 1;
+}
+.flexslider:hover .flex-direction-nav .flex-next
+{
+	opacity: 0.7;
+}
+.flexslider:hover .flex-direction-nav .flex-next:hover
+{
+	opacity: 1;
+}
+.flex-direction-nav .flex-disabled
+{
+	opacity: 0!important;
+	filter: alpha(opacity=0);
+	cursor: default;
+	z-index: -1;
+}
+.flex-pauseplay a
+{
+	display: block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	bottom: 5px;
+	left: 10px;
+	opacity: 0.8;
+	z-index: 10;
+	overflow: hidden;
+	cursor: pointer;
+	color: #000;
+}
+.flex-pauseplay a:before
+{
+	font-family: "entypo";
+	font-size: 20px;
+	display: inline-block;
+	content: '\f004';
+}
+.flex-pauseplay a:hover
+{
+	opacity: 1;
+}
+.flex-pauseplay a.flex-play:before
+{
+	content: '\f003';
+}
+.flex-control-nav,
+.flex-direction-nav
+{
+	width: 100%;
+	position: absolute;
+	bottom:50%;
+	text-align: center;
+}
+.flex-control-nav
+{
+	bottom: -5px;
+}
+.flex-control-nav li
+{
+	margin: 0 6px;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+}
+.flex-control-paging li a
+{
+	width: 11px;
+	height: 11px;
+	display: block;
+	background: #d5d5d5;
+	border: 1px solid #b0b0b0;
+	cursor: pointer;
+	text-indent: -9999px;
+	border-radius: 20px;
+}
+.flex-control-paging li a:hover
+{
+	background: #666;
+	border: 1px solid #666;
+}
+.flex-control-paging li a.flex-active
+{
+	background: #000;
+	border: 1px solid #000;
+	cursor: default;
+}
+.flex-control-thumbs
+{
+	margin: 5px 0 0;
+	position: static;
+	overflow: hidden;
+}
+
+.flex-control-thumbs li
+{
+	width: 25%;
+	float: left;
+	margin: 0;
+}
+
+.flex-control-thumbs img
+{
+	width: 100%;
+	height: auto;
+	display: block;
+	opacity: .7;
+	cursor: pointer;
+	-moz-user-select: none;
+	transition: all 1s ease;
+}
+
+.flex-control-thumbs img:hover
+{
+	opacity: 1;
+}
+.flex-control-thumbs .flex-active
+{
+	opacity: 1;
+	cursor: default;
+}
+/* ====================================================================================================================
+ * RESPONSIVE
+ * ====================================================================================================================*/
+@media screen and (max-width: 860px)
+{
+	.flex-direction-nav .flex-prev
+{
+	opacity: 1;
+	}
+	.flex-direction-nav .flex-next
+{
+	opacity: 1;
+	}
+}

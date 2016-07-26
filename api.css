@@ -1,3 +1,84 @@
+figure.logo #logo
+{
+	height: 75px;
+}
+
+.project
+{
+	padding: 0.16em 0.6em;
+	margin-bottom: 0.6em;
+	border: 1px solid #f5f5f5;
+	background-color: #fff;
+	border-radius: 6px;
+	transition: all 0.3s ease-in;
+}
+
+.project:hover
+{
+	background-color: #fafafa;
+}
+
+.contents
+{
+	padding: 0.2em 0.6em 0.4em;
+	margin-bottom: 0.6em;
+	border: 1px solid #f5f5f5;
+	background-color: #fcfcfc;
+	border-radius: 6px;
+}
+
+.contents .contents
+{
+	background-color: #fff;
+}
+
+.project > .projectName
+{
+/* 	font-family: 'Lucida Console', 'Andale Mono', 'Nimbus Mono L', 'Liberation Mono', FreeMono, 'Osaka Monospaced', Courier, 'New Courier', monospace; */
+	color: #4b6fb2;
+	font-size: 1.2em;
+	padding-left: 0.3em;
+}
+
+.project > .expando:before,
+.substructure > .expando:before
+{
+	margin-right: 0.6em;
+	border: solid;
+	border-color: transparent #4b6fb2;
+	border-width: 6px 0 6px 6px;
+	content: "";
+	display: inline-block;
+	transition: all 0.3s ease-in;
+}
+
+.project:hover > .expando:before,
+.substructure:hover > .expando:before
+{
+	transform: rotate(45deg);
+	transition: all 0.3s ease-in;
+}
+
+.project > .expando.active:before,
+.project:hover > .expando.active:before,
+.substructure > .expando.active:before,
+.substructure:hover > .expando.active:before
+{
+	transform: rotate(90deg);
+	transition: all 0.3s ease-in;
+}
+.substructure.method .expando:before,
+.substructure.var .expando:before,
+.comment.expando:before
+{
+	display: none !important;
+}
+
+.substructure code
+{
+	display: inline-block;
+/* 	font-family: 'Lucida Console', 'Andale Mono', 'Nimbus Mono L', 'Liberation Mono', FreeMono, 'Osaka Monospaced', Courier, 'New Courier', monospace; */
+}
 
 .substructure { margin-left: 10pt; }
 .comment { margin-left: 10pt; }

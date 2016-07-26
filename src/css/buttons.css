@@ -1,0 +1,178 @@
+/* ==========================================================================
+   8. Buttons
+   ========================================================================== */
+
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="file"],
+.button_grp .active,
+.filter_nav>dd>a
+{
+    font-size: 1em;
+    position: relative;
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 0;
+    color: #fff;
+    font-weight: normal;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: normal;
+    padding: .625em;
+    background: #000;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.3s ease-out;
+}
+
+.button.ghost,
+.button.ghost:visited
+{
+    color: #f26c37;
+    background: transparent;
+    border: 1px solid #f26c37;
+}
+.button.ghost:hover,
+.button.ghost:active
+{
+	color: #000;
+    background: transparent;
+/*     background: #f26c37; */
+    border: 1px solid #000;
+}
+
+.button.orange,
+.button.orange:visited
+{
+    color: #fff;
+    background: #f26c37;
+    border: 1px solid #f26c37;
+}
+.button.orange:hover,
+.button.orange:active
+{
+	color: #fff;
+    background: #000;
+    border: 1px solid #000;
+}
+
+.button,
+a.button,
+.button a:visited,
+.button:visited,
+.button a,
+.button a:visited,
+.pager a:visited
+{
+    color: #fff;
+/*
+	color: #444;
+	text-decoration: none;
+*/
+}
+
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+input[type="file"]:hover,
+.filter_nav>dd>a:hover
+{
+    background: #f26c37;
+}
+
+.button:active,
+button:active,
+input[type="submit"]:active,
+input[type="reset"]:active,
+input[type="button"]:active,
+input[type="file"]:active,
+.button_grp .active,
+.button_grp a.button:active,
+.button_grp a.button:focus,
+.filter_nav>dd>a:active,
+.pager_nav .active
+{
+    color: #fff;
+    background: #f26c37;
+}
+
+.button.full-width,
+button.full-width,
+input[type="submit"].full-width,
+input[type="reset"].full-width,
+input[type="button"].full-width
+{
+    width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: center;
+}
+
+ul.button_grp,
+ul.pager_nav
+{
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+}
+
+ul.pager_nav li,
+ul.button_grp li
+{
+	display: inline;
+	float: none;
+	margin: 0;
+}
+
+ul.pager_nav li input[type="text"]
+{
+	width: 3em;
+}
+
+.button_grp,
+.button_grp>
+{
+    float: left;
+    margin: 0;
+}
+
+ul.button_grp .button,
+ul.button_grp .active,
+.pager_nav input[type="text"],
+.pager_nav button,
+.pager_nav .button,
+.pager_nav .active
+{
+    padding: 0.425em;
+    margin: 0;
+    border-radius: 0;
+}
+
+.filter_nav,
+.pager_nav,
+.pager_nav input[type="text"],
+.pager_nav button
+{
+    font: -webkit-control;
+}
+
+.pager_nav .button.last
+{
+    border-radius: 0;
+}
+
+.button_grp .first .button,
+ul.button_grp .first.button
+{
+}
+
+.button_grp .last .button,
+.button_grp .last.button,
+.pager_nav .button.last
+{
+}
