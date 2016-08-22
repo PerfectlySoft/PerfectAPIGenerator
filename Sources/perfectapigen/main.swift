@@ -3,19 +3,21 @@ import Darwin
 import PerfectLib
 import PerfectMustache
 
-var sourcesRoot: String?
-var templateFile: String?
-var destinationFile: String?
+var sourcesRoot: String? = nil
+var templateFile: String? = nil
+var destinationFile: String? = nil
 
-var args = CommandLine.arguments
+var args = CommandLine.arguments.makeIterator()
+var currArg = args.next()
 
-func usage() -> Never {
+func usage() {
 	print("Usage: \(CommandLine.arguments.first!) [--root sources_root] [--template mustache_template] [--dest destination_file]")
 	exit(0)
 }
 
 func argFirst() -> String {
-	guard let frst = args.first else {
+	currArg = args.next()
+	guard let frst = currArg else {
 		print("Argument requires value.")
 		exit(-1)
 	}
@@ -24,30 +26,28 @@ func argFirst() -> String {
 
 let validArgs = [
 	"--root": {
-		args.removeFirst()
 		sourcesRoot = argFirst()
 	},
 	"--dest": {
-		args.removeFirst()
 		destinationFile = argFirst()
 	},
 	"--template": {
-		args.removeFirst()
 		templateFile = argFirst()
 	},
 	"--help": {
 		usage()
 	}]
 
-while args.count > 0 {
-	if let closure = validArgs[args.first!.lowercased()] {
+while let arg = currArg {
+	if let closure = validArgs[arg.lowercased()] {
 		closure()
 	}
-	args.removeFirst()
+	currArg = args.next()
 }
 
 guard let srcs = sourcesRoot else {
 	usage()
+	exit(0)
 }
 
 struct ProcError: Error {
@@ -265,17 +265,21 @@ try srcsDir.forEachEntry {
 	let git = "git"
 	let gitPullArgs = ["pull"]
 	
-	_ = try runProc(cmd: git, args: gitPullArgs)
-//	_ = try runProc(cmd: swift, args: spmCleanArgs)
-	_ = try runProc(cmd: swift, args: spmBuildArgs)
-	let apiInfo = try runProc(cmd: sourcekitten, args: skArgs, read: true)
-	let decodedApiInfo = try apiInfo?.jsonDecode() as? [Any]
-	
-	let projectAPI = processAPIInfo(projectName: name, apiInfo: decodedApiInfo!)
-	var projectInfo = [String:Any]()
-	projectInfo["name"] = fixProjectName(name)
-	projectInfo["files"] = projectAPI
-	projectsAry.append(projectInfo)
+	do {
+		_ = try runProc(cmd: git, args: gitPullArgs)
+	//	_ = try runProc(cmd: swift, args: spmCleanArgs)
+		_ = try runProc(cmd: swift, args: spmBuildArgs)
+		let apiInfo = try runProc(cmd: sourcekitten, args: skArgs, read: true)
+		let decodedApiInfo = try apiInfo?.jsonDecode() as? [Any]
+		
+		let projectAPI = processAPIInfo(projectName: name, apiInfo: decodedApiInfo!)
+		var projectInfo = [String:Any]()
+		projectInfo["name"] = fixProjectName(name)
+		projectInfo["files"] = projectAPI
+		projectsAry.append(projectInfo)
+	} catch {
+		print("GOT EXCEPTION \(error)")
+	}
 }
 
 let resDict: [String:Any] = ["projects":projectsAry]
