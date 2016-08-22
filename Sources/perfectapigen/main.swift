@@ -7,11 +7,10 @@ var sourcesRoot: String?
 var templateFile: String?
 var destinationFile: String?
 
-var args = Process.arguments
+var args = CommandLine.arguments
 
-@noreturn
-func usage() {
-	print("Usage: \(Process.arguments.first!) [--root sources_root] [--template mustache_template] [--dest destination_file]")
+func usage() -> Never {
+	print("Usage: \(CommandLine.arguments.first!) [--root sources_root] [--template mustache_template] [--dest destination_file]")
 	exit(0)
 }
 
@@ -51,7 +50,7 @@ guard let srcs = sourcesRoot else {
 	usage()
 }
 
-struct ProcError: ErrorProtocol {
+struct ProcError: Error {
 	let code: Int
 	let msg: String?
 }
@@ -64,7 +63,7 @@ func runProc(cmd: String, args: [String], read: Bool = false) throws -> String? 
 		var ary = [UInt8]()
 		while true {
 			do {
-				guard let s = try proc.stdout?.readSomeBytes(count: 1024) where s.count > 0 else {
+				guard let s = try proc.stdout?.readSomeBytes(count: 1024) , s.count > 0 else {
 					break
 				}
 				ary.append(contentsOf: s)
@@ -192,14 +191,14 @@ func processAPISubstructure(_ substructures: [Any]) -> [[String:Any]]? {
 		guard subDict.count > 0 else {
 			continue
 		}
-		if let subSubstructure = subSubstructure, ss = processAPISubstructure(subSubstructure) {
+		if let subSubstructure = subSubstructure, let ss = processAPISubstructure(subSubstructure) {
 			if wasEnumCase {
 				retAry.append(contentsOf: ss)
 				continue
 			} else {
 				subDict["substructure"] = ss
 			}
-		} else if let kind = subDict["kind"] as? String where kind == "extension" {
+		} else if let kind = subDict["kind"] as? String , kind == "extension" {
 			continue
 		} else {
 			subDict["substructure"] = [[String:Any]]()
