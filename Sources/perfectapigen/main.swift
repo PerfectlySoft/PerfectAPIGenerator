@@ -2,6 +2,7 @@
 import Darwin
 import PerfectLib
 import PerfectMustache
+import Foundation
 
 var sourcesRoot: String? = nil
 var templateFile: String? = nil
@@ -56,7 +57,11 @@ struct ProcError: Error {
 }
 
 func runProc(cmd: String, args: [String], read: Bool = false) throws -> String? {
-	let envs = [("PATH", "/Users/kjessup/.swiftenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"), ("HOME", "/Users/kjessup")]
+
+	let envs = [("PATH", "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local:/usr/local/Cellar:~/.swiftenv/"),
+	            ("HOME", ProcessInfo.processInfo.environment["HOME"]!),
+	            ("LANG", "en_CA.UTF-8")]
+
 	let proc = try SysProcess(cmd, args: args, env: envs)
 	var ret: String?
 	if read {
@@ -83,27 +88,75 @@ func runProc(cmd: String, args: [String], read: Bool = false) throws -> String? 
 	return ret
 }
 
-let repoList = ["Perfect-CURL/":"PerfectCURL",
-                "Perfect-FastCGI/":"PerfectFastCGI",
-                "Perfect-HTTP/":"PerfectHTTP",
-                "Perfect-HTTPServer/":"PerfectHTTPServer",
-                "Perfect-MongoDB/":"MongoDB",
-                "Perfect-Mustache/":"PerfectMustache",
-                "Perfect-MySQL/":"MySQL",
-                "Perfect-Net/":"PerfectNet",
-                "Perfect-Notifications/":"PerfectNotifications",
-                "Perfect-PostgreSQL/":"PostgreSQL",
-                "Perfect-Redis/":"PerfectRedis",
-                "Perfect-SQLite/":"SQLite",
-                "Perfect-Thread/":"PerfectThread",
-                "Perfect-WebSockets/":"PerfectWebSockets",
-                "PerfectLib/":"PerfectLib"
+//	"Perfect-FastCGI/":"PerfectFastCGI",
+let repoList = [
+	"Perfect-CURL/":"PerfectCURL",
+	"Perfect-HTTP/":"PerfectHTTP",
+	"Perfect-HTTPServer/":"PerfectHTTPServer",
+	"Perfect-MongoDB/":"MongoDB",
+	"Perfect-Mustache/":"PerfectMustache",
+	"Perfect-MySQL/":"MySQL",
+	"Perfect-Net/":"PerfectNet",
+	"Perfect-Notifications/":"PerfectNotifications",
+	"Perfect-PostgreSQL/":"PostgreSQL",
+	"Perfect-Redis/":"PerfectRedis",
+	"Perfect-SQLite/":"SQLite",
+	"Perfect-Thread/":"PerfectThread",
+	"Perfect-WebSockets/":"PerfectWebSockets",
+	"PerfectLib/":"PerfectLib"
 ]
+
+//	"Perfect-FastCGI/",
+let repoListOrdered = [
+	"PerfectLib/",
+	"Perfect-CURL/",
+	"Perfect-HTTP/",
+	"Perfect-HTTPServer/",
+	"Perfect-MongoDB/",
+	"Perfect-Mustache/",
+	"Perfect-MySQL/",
+	"Perfect-Net/",
+	"Perfect-Notifications/",
+	"Perfect-PostgreSQL/",
+	"Perfect-Redis/",
+	"Perfect-SQLite/",
+	"Perfect-Thread/",
+	"Perfect-WebSockets/"
+]
+
+
+/*
+
+let repoList = [
+"PerfectLib/":"PerfectLib",
+"Perfect-CURL/":"PerfectCURL"
+
+]
+
+let repoList = [
+	"Perfect-CURL/":"PerfectCURL",
+	"Perfect-FastCGI/":"PerfectFastCGI",
+	"Perfect-HTTP/":"PerfectHTTP",
+	"Perfect-HTTPServer/":"PerfectHTTPServer",
+	"Perfect-MongoDB/":"MongoDB",
+	"Perfect-Mustache/":"PerfectMustache",
+	"Perfect-MySQL/":"MySQL",
+	"Perfect-Net/":"PerfectNet",
+	"Perfect-Notifications/":"PerfectNotifications",
+	"Perfect-PostgreSQL/":"PostgreSQL",
+	"Perfect-Redis/":"PerfectRedis",
+	"Perfect-SQLite/":"SQLite",
+	"Perfect-Thread/":"PerfectThread",
+	"Perfect-WebSockets/":"PerfectWebSockets",
+	"PerfectLib/":"PerfectLib"
+]
+
+*/
 
 let workingDir = Dir.workingDir
 
 func processAPISubstructure(_ substructures: [Any]) -> [[String:Any]]? {
-	
+
 	func cleanKey(_ key: String) -> String {
 		if key.hasPrefix("key.") {
 			return key[key.index(key.startIndex, offsetBy: 4)..<key.endIndex]
@@ -244,13 +297,16 @@ func fixProjectName(_ name: String) -> String {
 
 var projectsAry = [[String:Any]]()
 let srcsDir = Dir(srcs)
-try srcsDir.forEachEntry {
-	name in
-	
+//try srcsDir.forEachEntry {
+//	name in
+for name in repoListOrdered {
 	guard let target = repoList[name] else {
-		return
+		break
 	}
-	
+//	let target = repoList[name]
+
+	print("Working in: \(name)")
+
 	let repoDirPath = srcs + "/" + name
 	let repoDir = Dir(repoDirPath)
 	try repoDir.setAsWorkingDir()
@@ -267,7 +323,7 @@ try srcsDir.forEachEntry {
 	
 	do {
 		_ = try runProc(cmd: git, args: gitPullArgs)
-	//	_ = try runProc(cmd: swift, args: spmCleanArgs)
+		//	_ = try runProc(cmd: swift, args: spmCleanArgs)
 		_ = try runProc(cmd: swift, args: spmBuildArgs)
 		let apiInfo = try runProc(cmd: sourcekitten, args: skArgs, read: true)
 		let decodedApiInfo = try apiInfo?.jsonDecode() as? [Any]

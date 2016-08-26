@@ -74,18 +74,29 @@
 			
 				<div class="container">
 					<div class="row">
-						<div class="col twenty_two prefix_one">
-						<header>
-							<h1>Perfect API Generator</h1>
-						</header>
-						{{#projects}}
-						<div class="project">
-							<div class="expando projectName">{{name}}</div>
-							<div class="contents">
-								{{#files}}{{>api_html_sub}}{{/files}}
-							</div>
+						<div class="col twenty_two">
+							<header>
+								<h1>Perfect API Documentation</h1>
+							</header>
 						</div>
+					</div>
+					<div class="row">
+						<div class="col five">
+							<h3>Modules</h3>							
+						{{#projects}}
+							<div class="projectName"><a href="#{{name}}" data-module="{{name}}" class="triggerOpen">{{name}}</a></div>
 						{{/projects}}
+
+						</div>
+						<div class="col seventeen last">						
+							{{#projects}}
+							<div class="project allmodules module-{{name}}">
+								<div class="expando projectName">Module: {{name}}</div>
+								<div class="contents">
+									{{#files}}{{>api_html_sub}}{{/files}}
+								</div>
+							</div>
+							{{/projects}}
 
 						</div>
 					</div>
@@ -185,7 +196,14 @@
 </div>
 <script>
 $(document).ready(function() {
-	$(".expando").click(function() { $(this).siblings(".contents").slideToggle();$(this).toggleClass('active'); })
+	$(".module-PerfectLib").show();
+		
+	$(".triggerOpen").click(function(){
+		var thisModule = $(this).attr("data-module");
+		$(".allmodules").hide();
+		$(".module-"+thisModule).show();
+		event.preventDefault;
+	});
 })
 </script>
 
