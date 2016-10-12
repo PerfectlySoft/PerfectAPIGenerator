@@ -297,38 +297,50 @@ func fixProjectName(_ name: String) -> String {
 
 var projectsAry = [[String:Any]]()
 let srcsDir = Dir(srcs)
-//try srcsDir.forEachEntry {
-//	name in
+
+func getAllSwiftFiles(inDir: Dir) throws -> [String] {
+	let inPath = inDir.path
+	var ret = [String]()
+	try inDir.forEachEntry {
+		path in
+		let currFullPath = "\(inPath)\(path)"
+		if File(currFullPath).isDir {
+			ret.append(contentsOf: try getAllSwiftFiles(inDir: Dir(currFullPath)))
+		} else if path.filePathExtension == "swift" {
+			ret.append(currFullPath)
+		}
+	}
+	return ret
+}
+
 for name in repoListOrdered {
 	guard let target = repoList[name] else {
 		break
 	}
-//	let target = repoList[name]
 
 	print("Working in: \(name)")
 
 	let repoDirPath = srcs + "/" + name
 	let repoDir = Dir(repoDirPath)
 	try repoDir.setAsWorkingDir()
-		
-	let sourcekitten = "/usr/local/bin/sourcekitten"
-	let skArgs = ["doc", "--spm-module", target]
 	
-	let swift = "swift"
-	let spmCleanArgs = ["build", "--clean=dist"]
-	let spmBuildArgs = ["build"]
+	let sourcekitten = "/usr/local/bin/sourcekitten"
+	let skArgs1 = ["doc", "--single-file"]
+	let skArgs2 = ["--", "-c"]
 	
 	let git = "git"
 	let gitPullArgs = ["pull"]
 	
 	do {
 		_ = try runProc(cmd: git, args: gitPullArgs)
-		//	_ = try runProc(cmd: swift, args: spmCleanArgs)
-		_ = try runProc(cmd: swift, args: spmBuildArgs)
-		let apiInfo = try runProc(cmd: sourcekitten, args: skArgs, read: true)
-		let decodedApiInfo = try apiInfo?.jsonDecode() as? [Any]
-		
-		let projectAPI = processAPIInfo(projectName: name, apiInfo: decodedApiInfo!)
+		let files = try getAllSwiftFiles(inDir: Dir(repoDirPath + "Sources"))
+		var decodedApiInfo = [Any]()
+		for swiftFile in files {
+			let apiInfo = try runProc(cmd: sourcekitten, args: skArgs1 + [swiftFile] + skArgs2 + [swiftFile], read: true)
+			let thisDecodedApiInfo = try apiInfo?.jsonDecode() as? [String:Any]
+			decodedApiInfo.append(thisDecodedApiInfo as Any)
+		}
+		let projectAPI = processAPIInfo(projectName: name, apiInfo: decodedApiInfo)
 		var projectInfo = [String:Any]()
 		projectInfo["name"] = fixProjectName(name)
 		projectInfo["files"] = projectAPI
