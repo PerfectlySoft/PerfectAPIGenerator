@@ -200,23 +200,23 @@
 					<div class="row">
 						
 						<div id="toccolumn" class="col six first">
-						{{#projects}}
-							<div class="projectName"><a href="#{{name}}" data-module="{{name}}" class="triggerOpen">{{name}}</a></div>
-						{{/projects}}
+						{{#key.projects}}
+							<div class="projectName"><a href="#{{key.name}}" data-module="{{key.name}}" class="triggerOpen">{{key.name}}</a></div>
+						{{/key.projects}}
 
 						
 						</div>
 						
 						<div class="col eighteen last">
 							<section id="markdowncontent">
-							{{#projects}}
-							<div class="project allmodules module-{{name}}">
-								<div class="expando projectName">Module: {{name}}</div>
+							{{#key.projects}}
+							<div class="project allmodules module-{{key.name}}">
+								<div class="expando projectName">Module: {{key.name}}</div>
 								<div class="contents">
-									{{#files}}{{>api_html_sub}}{{/files}}
+									{{#key.files}}{{>api_html_sub}}{{/key.files}}
 								</div>
 							</div>
-							{{/projects}}
+							{{/key.projects}}
 
 							</section>
 						</div>
