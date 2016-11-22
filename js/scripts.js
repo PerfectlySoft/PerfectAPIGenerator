@@ -197,18 +197,6 @@ amp.bindlisteners = function() {
 		}
 	}));
 	
-	$(document).on( 'click', '.show_more', (function(){
-		$(this).addClass('hide');
-		$(this).siblings('.show_less').removeClass('hide');
-		$(this).parent().addClass('open');
-	}));
-	
-	$(document).on( 'click', '.show_less', (function(){
-		$(this).addClass('hide');
-		$(this).siblings('.show_more').removeClass('hide');
-		$(this).parent().removeClass('open');
-	}));
-	
 
 };
 

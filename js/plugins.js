@@ -1,10 +1,10 @@
 /*!
- * Perfect v1.1.6.13
+ * Perfect v1.1.6.9
  * Copyright 2016, Clive Moore @cliveMoore @Treefrog
  * http://perfect.org
  * This content is released under the MIT license
  * http://www.opensource.org/licenses/mit-license.php
- * 25-07-2016
+ * 20-06-2016
  */
 
 // Avoid `console` errors in browsers that lack a console.

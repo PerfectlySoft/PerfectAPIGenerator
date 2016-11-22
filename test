@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DEST=api.html
+DEST=api1.html
 
 swift build
-.build/debug/perfectapigen --root /Users/kjessup/development/PerfectNeu --dest ${DEST} --template api_html.mustache
+.build/debug/perfectapigen --root /Users/jonathanguthrie/Documents/Perfect-Collection/PerfectAPIClones --dest ${DEST} --template /Users/jonathanguthrie/Documents/Perfect-Collection/PerfectAPIGenerator/api_html.mustache
 #cat ${DEST} | python -m json.tool > api.json
-bbedit api.html
+#bbedit api.html

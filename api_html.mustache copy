@@ -23,7 +23,6 @@
 
 <link rel="stylesheet" href="css/perfect.css">
 <link rel="stylesheet" href="css/theme-swift.css">
-<link rel="stylesheet" type="text/css" href="api.css">
 
 <script src="js/js/modernizr-2.6.2.min.js"></script>
 <script src="js/js/prefixfree.min.js"></script>
@@ -168,7 +167,7 @@
 				<a href="https://www.perfect.org/" title="One language to rule them all, Server Side Swift by Perfect" style="display: block;">
 					<h2 class="assistive-text">perfect.org</h2>
 					<figure class="logo">
-						<img id="logo" src="/images/perfect-logo-2-0.png" srcset="images/perfect-logo-2-0.png 1x, images/perfect-logo-2-0.svg 2x" align="" class="swg" width="176" height="58" alt="Perfect Logo">
+						<img id="logo" src="images/perfect-logo-2-0.png" srcset="images/perfect-logo-2-0.png 1x, images/perfect-logo-2-0.svg 2x" align="" class="swg" width="176" height="58" alt="Perfect Logo">
 					</figure>
 				</a>
 				
