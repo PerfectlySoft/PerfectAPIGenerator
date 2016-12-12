@@ -93,6 +93,7 @@ let repositoryBaseURL = "https://github.com/PerfectlySoft/"
 let repoListOrdered = [
 
 	("PerfectLib/","PerfectLib"),
+	("Perfect-CouchDB/","PerfectCouchDB"),
 	("Perfect-CURL/","PerfectCURL"),
 	("Perfect-Filemaker/","FileMaker"),
 	("Perfect-HTTP/","PerfectHTTP"),
@@ -109,11 +110,21 @@ let repoListOrdered = [
 	("Perfect-RequestLogger/","RequestLogger"),
 	("Perfect-SQLite/","SQLite"),
 	("Perfect-Thread/","PerfectThread"),
+	("Turnstile-Perfect/","Turnstile-Perfect"),
+	("Perfect-Turnstile-CouchDB/","Perfect-Turnstile-CouchDB"),
+	("Perfect-Turnstile-MySQL/","Perfect-Turnstile-MySQL"),
 	("Perfect-Turnstile-PostgreSQL/","Perfect-Turnstile-PostgreSQL"),
 	("Perfect-Turnstile-SQLite/","Perfect-Turnstile-SQLite"),
 	("Perfect-WebSockets/","PerfectWebSockets"),
 	("Perfect-XML/","XML"),
-	("Perfect-Zip/","Zip")
+	("Perfect-Zip/","Zip"),
+
+	("StORM/","StORM"),
+	("CouchDB-StORM/","CouchDB-StORM"),
+	("MySQL-StORM/","MySQL-StORM"),
+	("Postgres-StORM/","Postgres-StORM"),
+	("SQLite-StORM/","SQLite-StORM")
+
 
 ]
 
@@ -172,6 +183,8 @@ func processAPISubstructure(_ substructures: [Any]) -> [[String:Any]]? {
 			return "enum case"
 		case "source.lang.swift.decl.enumelement":
 			return "case"
+		case "source.lang.swift.syntaxtype.comment.mark":
+			return "mark"
 		default:
 			fatalError("Unknown type \(value)")
 		}
