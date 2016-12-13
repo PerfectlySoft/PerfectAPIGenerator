@@ -110,14 +110,15 @@ let repoListOrdered = [
 	("Perfect-RequestLogger/","RequestLogger"),
 	("Perfect-SQLite/","SQLite"),
 	("Perfect-Thread/","PerfectThread"),
+	("Perfect-WebSockets/","PerfectWebSockets"),
+	("Perfect-XML/","XML"),
+	("Perfect-Zip/","Zip"),
+
 	("Turnstile-Perfect/","Turnstile-Perfect"),
 	("Perfect-Turnstile-CouchDB/","Perfect-Turnstile-CouchDB"),
 	("Perfect-Turnstile-MySQL/","Perfect-Turnstile-MySQL"),
 	("Perfect-Turnstile-PostgreSQL/","Perfect-Turnstile-PostgreSQL"),
 	("Perfect-Turnstile-SQLite/","Perfect-Turnstile-SQLite"),
-	("Perfect-WebSockets/","PerfectWebSockets"),
-	("Perfect-XML/","XML"),
-	("Perfect-Zip/","Zip"),
 
 	("StORM/","StORM"),
 	("CouchDB-StORM/","CouchDB-StORM"),
@@ -362,6 +363,7 @@ func fixProjectName(_ name: String) -> String {
 }
 
 var projectsAry = [[String:Any]]()
+var projectsMenuAry = [[String:Any]]()
 let srcsDir = Dir(srcs)
 
 func getAllSwiftFiles(inDir: Dir) throws -> [String] {
@@ -411,34 +413,86 @@ for (name, target) in repoListOrdered {
 		projectInfo["key.repo"] = repoName
 		projectInfo["key.name"] = fixProjectName(name)
 		projectInfo["key.files"] = projectAPI
+
+		projectInfo["key.link"] = "api-\((projectInfo["key.name"])!).html"
+		if projectInfo["key.name"] as! String == "PerfectLib" {
+			projectInfo["key.link"] = "api.html"
+		}
+
 		projectsAry.append(projectInfo)
+
+		// for menu and file naming
+		var projectInfoMenu = [String:Any]()
+		projectInfoMenu["key.name"] = fixProjectName(name)
+//		projectInfoMenu["key.link"] = "api-\(projectInfoMenu["key.name"]).html"
+//		if projectInfoMenu["key.name"] as! String == "PerfectLib" {
+//			projectInfoMenu["key.link"] = "api.html"
+//		}
+		projectInfoMenu["key.link"] = projectInfo["key.link"]
+		projectsMenuAry.append(projectInfoMenu)
+
 	} catch {
 		print("GOT EXCEPTION \(error)")
 	}
 }
 
+/*
+{{#key.projects}}
+<div class="projectName"><a href="#{{key.name}}" data-module="{{key.name}}" class="triggerOpen">{{key.name}}</a></div>
+{{/key.projects}}
 
-let resDict: [String:Any] = ["key.projects":projectsAry, "key.undocumented":undocumentedElements]
-//let resDict: [String:Any] = ["projects":projectsAry]
+*/
+
+//let resDict: [String:Any] = ["key.projects":projectsAry, "key.undocumented":undocumentedElements]
+//let fileName = destinationFile?.components(separatedBy: ".")
+for proj in projectsAry {
+
+	let resDict: [String:Any] = ["key.projects":[proj], "key.projectMenu":projectsMenuAry]
+
+	try workingDir.setAsWorkingDir()
+
+	var resultText: String?
+
+	if let template = templateFile {
+		let context = MustacheEvaluationContext(templatePath: template, map: resDict)
+		let collector = MustacheEvaluationOutputCollector()
+		resultText = try context.formulateResponse(withCollector: collector)
+	} else { // write out json
+		resultText = try resDict.jsonEncodedString()
+	}
+	let f: File?
+	if let dest = destinationFile {
+		f = File(proj["key.link"] as! String)
+		try f?.open(.truncate)
+	} else {
+		f = fileStdout
+	}
+	try f?.write(string: resultText!)
+
+}
+
+/*
+let resDict: [String:Any] = ["key.projects":projectsAry]
 
 try workingDir.setAsWorkingDir()
 
 var resultText: String?
 
 if let template = templateFile {
-	let context = MustacheEvaluationContext(templatePath: template, map: resDict)
-	let collector = MustacheEvaluationOutputCollector()
-	resultText = try context.formulateResponse(withCollector: collector)
+let context = MustacheEvaluationContext(templatePath: template, map: resDict)
+let collector = MustacheEvaluationOutputCollector()
+resultText = try context.formulateResponse(withCollector: collector)
 } else { // write out json
-	resultText = try resDict.jsonEncodedString()
+resultText = try resDict.jsonEncodedString()
 }
 
 let f: File?
 if let dest = destinationFile {
-	f = File(dest)
-	try f?.open(.truncate)
+f = File(dest)
+try f?.open(.truncate)
 } else {
-	f = fileStdout
+f = fileStdout
 }
 try f?.write(string: resultText!)
 
+*/

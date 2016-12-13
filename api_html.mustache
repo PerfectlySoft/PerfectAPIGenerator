@@ -199,9 +199,9 @@
 					<div class="row">
 						
 						<div id="toccolumn" class="col six first">
-						{{#key.projects}}
-							<div class="projectName"><a href="#{{key.name}}" data-module="{{key.name}}" class="triggerOpen">{{key.name}}</a></div>
-						{{/key.projects}}
+						{{#key.projectMenu}}
+							<div class="projectName"><a href="{{key.link}}" data-module="{{key.name}}">{{key.name}}</a></div>
+						{{/key.projectMenu}}
 
 						
 						</div>
@@ -330,18 +330,7 @@
 		<img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=ntwej&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
 	</noscript>
 	
-<script>
-$(document).ready(function() {
-	$(".module-PerfectLib").show();
-		
-	$(".triggerOpen").click(function(){
-		var thisModule = $(this).attr("data-module");
-		$(".allmodules").hide();
-		$(".module-"+thisModule).show();
-		event.preventDefault;
-	});
-})
-</script>
+
 
 	</body>
 </html>
