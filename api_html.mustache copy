@@ -23,6 +23,7 @@
 
 <link rel="stylesheet" href="css/perfect.css">
 <link rel="stylesheet" href="css/theme-swift.css">
+<link rel="stylesheet" type="text/css" href="api.css">
 
 <script src="js/js/modernizr-2.6.2.min.js"></script>
 <script src="js/js/prefixfree.min.js"></script>
@@ -167,7 +168,7 @@
 				<a href="https://www.perfect.org/" title="One language to rule them all, Server Side Swift by Perfect" style="display: block;">
 					<h2 class="assistive-text">perfect.org</h2>
 					<figure class="logo">
-						<img id="logo" src="images/perfect-logo-2-0.png" srcset="images/perfect-logo-2-0.png 1x, images/perfect-logo-2-0.svg 2x" align="" class="swg" width="176" height="58" alt="Perfect Logo">
+						<img id="logo" src="/images/perfect-logo-2-0.png" srcset="images/perfect-logo-2-0.png 1x, images/perfect-logo-2-0.svg 2x" align="" class="swg" width="176" height="58" alt="Perfect Logo">
 					</figure>
 				</a>
 				
@@ -182,7 +183,6 @@
 						<li><a href="https://twitter.com/perfectlysoft" target="_blank"><span class="icon-twitter"></span></a></li>
 						<li><a href="https://www.facebook.com/Perfectly-Soft-Inc-1050875001629981" target="_blank"><span class="icon-facebook"></span></a></li>
 						<li><a href="https://www.youtube.com/channel/UCsw_djZbUnPtHu2XVNn7d3g/feed" target="_blank"><span class="icon-youtube"></span></a></li>
-						<li><a href="https://plus.google.com/u/2/109485138433947839672/posts" target="_blank"><span class="icon-googleplus"></span></a></li>
 					</ul>
 				</div>
 				
@@ -199,23 +199,23 @@
 					<div class="row">
 						
 						<div id="toccolumn" class="col six first">
-						{{#projects}}
-							<div class="projectName"><a href="#{{name}}" data-module="{{name}}" class="triggerOpen">{{name}}</a></div>
-						{{/projects}}
+						{{#key.projects}}
+							<div class="projectName"><a href="#{{key.name}}" data-module="{{key.name}}" class="triggerOpen">{{key.name}}</a></div>
+						{{/key.projects}}
 
 						
 						</div>
 						
 						<div class="col eighteen last">
 							<section id="markdowncontent">
-							{{#projects}}
-							<div class="project allmodules module-{{name}}">
-								<div class="expando projectName">Module: {{name}}</div>
+							{{#key.projects}}
+							<div class="project allmodules module-{{key.name}}">
+								<div class="expando projectName">Module: {{key.name}}</div>
 								<div class="contents">
-									{{#files}}{{>api_html_sub}}{{/files}}
+									{{#key.files}}{{>api_html_sub}}{{/key.files}}
 								</div>
 							</div>
-							{{/projects}}
+							{{/key.projects}}
 
 							</section>
 						</div>
@@ -293,7 +293,6 @@
 						<li><a href="https://twitter.com/perfectlysoft" target="_blank"><span class="icon-twitter"></span></a></li>
 						<li><a href="https://www.facebook.com/Perfectly-Soft-Inc-1050875001629981" target="_blank"><span class="icon-facebook"></span></a></li>
 						<li><a href="https://www.youtube.com/channel/UCsw_djZbUnPtHu2XVNn7d3g/feed" target="_blank"><span class="icon-youtube"></span></a></li>
-						<li><a href="https://plus.google.com/u/2/109485138433947839672/posts" target="_blank"><span class="icon-googleplus"></span></a></li>
 					</ul>
 
 				</div>

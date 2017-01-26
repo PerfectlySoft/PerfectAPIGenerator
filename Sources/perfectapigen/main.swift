@@ -96,6 +96,7 @@ let repoListOrdered = [
 	("Perfect-CouchDB/","PerfectCouchDB"),
 	("Perfect-CURL/","PerfectCURL"),
 	("Perfect-Filemaker/","FileMaker"),
+	("Perfect-GoogleAnalytics-MeasurementProtocol/","Perfect-GoogleAnalytics-MeasurementProtocol"),
 	("Perfect-HTTP/","PerfectHTTP"),
 	("Perfect-HTTPServer/","PerfectHTTPServer"),
 	("Perfect-Logger/","Logger"),
@@ -108,6 +109,14 @@ let repoListOrdered = [
 	("Perfect-PostgreSQL/","PostgreSQL"),
 	("Perfect-Redis/","PerfectRedis"),
 	("Perfect-RequestLogger/","RequestLogger"),
+
+	("Perfect-Authentication/","Authentication"),
+	("Perfect-Session/","Sessions"),
+	("Perfect-Session-SQLite/","SQLiteSessions"),
+	("Perfect-Session-CouchDB/","CouchDBSessions"),
+	("Perfect-Session-MySQL/","MySQLSessions"),
+	("Perfect-Session-PostgreSQL/","PostgreSQLSessions"),
+
 	("Perfect-SQLite/","SQLite"),
 	("Perfect-Thread/","PerfectThread"),
 	("Perfect-WebSockets/","PerfectWebSockets"),
