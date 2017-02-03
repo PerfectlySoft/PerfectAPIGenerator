@@ -185,6 +185,8 @@ func processAPISubstructure(_ substructures: [Any]) -> [[String:Any]]? {
 			return "static func"
 		case "source.lang.swift.decl.function.subscript":
 			return "subscript"
+		case "source.lang.swift.decl.function.constructor":
+			return "func"
 		case "source.lang.swift.decl.function.free":
 			return "func"
 		case "source.lang.swift.decl.enum":
