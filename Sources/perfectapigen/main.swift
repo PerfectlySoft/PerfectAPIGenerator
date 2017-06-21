@@ -185,6 +185,8 @@ func processAPISubstructure(_ substructures: [Any]) -> [[String:Any]]? {
 			return "static func"
 		case "source.lang.swift.decl.function.subscript":
 			return "subscript"
+		case "source.lang.swift.decl.function.constructor":
+			return "func"
 		case "source.lang.swift.decl.function.free":
 			return "func"
 		case "source.lang.swift.decl.enum":
@@ -390,7 +392,11 @@ func getAllSwiftFiles(inDir: Dir) throws -> [String] {
 	return ret
 }
 
-for (name, target) in repoListOrdered {
+// NOTE
+// check out
+// SourceKitRepresentable
+
+for (name, _) in repoListOrdered {
 
 	print("Working in: \(name)")
 
@@ -470,7 +476,7 @@ for proj in projectsAry {
 		resultText = try resDict.jsonEncodedString()
 	}
 	let f: File?
-	if let dest = destinationFile {
+	if destinationFile != nil {
 		f = File(proj["key.link"] as! String)
 		try f?.open(.truncate)
 	} else {
